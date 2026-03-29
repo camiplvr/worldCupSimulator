@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# World Cup Simulator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simulador de sorteio da Copa do Mundo 2026, feito em **React + TypeScript**.
+Permite buscar e selecionar seleções para simulação de sorteio (fase de grupos).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🔹 Funcionalidades implementadas
 
-## React Compiler
+- Componente `SearchSelect` com campo de busca (autocomplete simples)
+- Hook `useTeams` gerenciando lista de times e filtro por query
+- Utilitário `filterTeams` para busca com normalização de strings
+- UI limpa, com mensagem “Nenhuma seleção encontrada” quando não há resultados
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> ⚠️ Busca atual simples: utiliza `includes()`.
+> Comentário de melhoria futura na função `filterTeams`: implementar ranking de relevância (startsWith > code match > includes), debounce e highlight do termo buscado.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔹 Tecnologias
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- **React** (Hooks)
+- **TypeScript**
+- **Vite** (ferramenta de build)
+- **Tailwind CSS** para estilização
+- **Zustand** (em breve para gerenciamento de estado global)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+## 🔹 Rodando localmente
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/SEU_USUARIO/worldCupSimulator.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Entre na pasta do projeto:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+cd worldCupSimulator
 ```
+
+3. Instale as dependências:
+
+```bash
+npm install
+```
+
+4. Rode em modo de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+O app estará disponível em http://localhost:3000 .
+
+## 🔹 Estrutura do projeto
+
+```bash
+src/
+├─ components/ # Componentes UI (SearchSelect, etc.)
+├─ data/ # Dataset das seleções (teams.json)
+├─ hooks/ # Hooks customizados (useTeams, futuro useDrawStore)
+├─ store/ # Zustand store (em breve)
+├─ utils/ # Funções utilitárias (filterTeams, normalizeString)
+└─ pages/ # Páginas do app (se houver)
+```
+
+## 🔹 Melhorias futuras
+
+- Implementar ranking de resultados na busca (mais relevante para o usuário)
+- Adicionar debounce na busca
+- Highlight do termo pesquisado
+- Integração com Zustand para seleção de times
+- Função de sorteio de grupos (fase de grupos completa)
+- Testes unitários e de integração
+- Persistência avançada no LocalStorage ou API futura
+- Compartilhamento do resultado (Web Share API)
+
+## 🔹 Observações
+
+- Projeto foi desenvolvido seguindo requisitos do desafio técnico Front-end Pleno | React + TypeScript
+- Uso de IA para apoio (ChatGPT) documentado: auxiliar na arquitetura inicial e sugestões de melhorias. Todo código foi revisado manualmente.
