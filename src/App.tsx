@@ -1,5 +1,6 @@
 import "./index.css";
 import { SearchSelect } from "./components/SearchSelect/SearchSelect";
+import { SelectedTeams } from "./components/SelectedTeams/SelectedTeams";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         Simulador de Sorteio da Copa do Mundo
         <div className="text-blue-500 mt-10">
           <SearchSelect />
+          <SelectedTeams />
         </div>
       </div>
     </>
