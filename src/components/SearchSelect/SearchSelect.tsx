@@ -1,7 +1,16 @@
 import { useTeams } from "../../hooks/useTeams";
+import { useDrawStore } from "../../store/useDrawStore";
 
 export function SearchSelect() {
   const { query, setQuery, teams, hasResults } = useTeams();
+  const { selectedTeams, addTeam, removeTeam } = useDrawStore();
+
+  const isSelected = (code: string) =>
+    selectedTeams.some((t) => t.code === code);
+
+  const handleSelect = (team: any) => {
+    isSelected(team.code) ? removeTeam(team.code) : addTeam(team);
+  };
 
   return (
     <div className="mb-4">
@@ -19,7 +28,11 @@ export function SearchSelect() {
         )}
 
         {teams.map((team) => (
-          <li key={team.code} className="p-2 hover:bg-gray-100 cursor-pointer">
+          <li
+            key={team.code}
+            className={`p-2 hover:bg-gray-100 cursor-pointer ${isSelected(team.code) ? "bg-green-200" : ""}`}
+            onClick={() => handleSelect(team)}
+          >
             {team.name} ({team.code})
           </li>
         ))}
