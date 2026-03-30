@@ -3,8 +3,10 @@ import { useDrawStore } from "../../store/useDrawStore";
 
 export function SearchSelect() {
   const { query, setQuery, teams, hasResults } = useTeams();
-  const { selectedTeams, addTeam, removeTeam } = useDrawStore();
+  const { selectedTeams, addTeam, removeTeam, setAllTeams, clearTeams } =
+    useDrawStore();
 
+  const allSelected = selectedTeams.length === teams.length;
   const isSelected = (code: string) =>
     selectedTeams.some((t) => t.code === code);
 
@@ -13,30 +15,53 @@ export function SearchSelect() {
   };
 
   return (
-    <div className="mb-4">
-      <input
-        type="text"
-        placeholder="Buscar seleção..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="w-full border p-2 rounded"
-      />
+    <>
+      <div className="mb-4">
+        <input
+          aria-label="Buscar seleção"
+          role="combobox"
+          aria-controls="results-list"
+          type="text"
+          placeholder="Buscar seleção..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full border p-2 rounded"
+        />
+        <button
+          onClick={() => {
+            if (allSelected) {
+              clearTeams();
+            } else {
+              setAllTeams(teams);
+            }
+          }}
+          className="mb-2 text-sm text-blue-500 hover:underline"
+        >
+          {allSelected ? "Remover todos" : "Selecionar todos"}
+        </button>
+      </div>
+      <div>
+        <ul
+          id="results-list"
+          role="listbox"
+          className="border mt-2 max-h-40 overflow-y-auto"
+        >
+          {!hasResults && (
+            <li className="p-2 text-gray-500">Nenhuma seleção encontrada</li>
+          )}
 
-      <ul className="border mt-2 max-h-40 overflow-y-auto">
-        {!hasResults && (
-          <li className="p-2 text-gray-500">Nenhuma seleção encontrada</li>
-        )}
-
-        {teams.map((team) => (
-          <li
-            key={team.code}
-            className={`p-2 hover:bg-gray-100 cursor-pointer ${isSelected(team.code) ? "bg-green-200" : ""}`}
-            onClick={() => handleSelect(team)}
-          >
-            {team.name} ({team.code})
-          </li>
-        ))}
-      </ul>
-    </div>
+          {teams.map((team) => (
+            <li
+              role="option"
+              key={team.code}
+              className={`p-2 hover:bg-gray-100 cursor-pointer ${isSelected(team.code) ? "bg-green-200" : ""}`}
+              onClick={() => handleSelect(team)}
+            >
+              {team.name} ({team.code})
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }

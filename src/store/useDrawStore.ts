@@ -7,6 +7,7 @@ type DrawState = {
   addTeam: (team: Team) => void;
   removeTeam: (code: string) => void;
   clearTeams: () => void;
+  setAllTeams: (teams: Team[]) => void;
 };
 
 export const useDrawStore = create<DrawState>()(
@@ -31,6 +32,8 @@ export const useDrawStore = create<DrawState>()(
       },
 
       clearTeams: () => set({ selectedTeams: [] }),
+
+      setAllTeams: (teams: Team[]) => set({ selectedTeams: teams }),
     }),
     {
       name: "draw-storage",
