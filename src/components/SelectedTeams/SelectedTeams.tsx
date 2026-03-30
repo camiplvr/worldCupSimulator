@@ -15,7 +15,9 @@ export function SelectedTeams() {
   return (
     <div className="mt-4">
       <div className="flex justify-between items-center mb-2">
-        <h2 className="font-bold">Times selecionados</h2>
+        <h2 className="font-bold">
+          Times selecionados ({selectedTeams.length})
+        </h2>
 
         <button
           onClick={clearTeams}
