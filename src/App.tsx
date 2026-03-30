@@ -2,7 +2,7 @@ import "./index.css";
 import { useState, useEffect } from "react";
 import { SearchSelect } from "./components/SearchSelect/SearchSelect";
 import { SelectedTeams } from "./components/SelectedTeams/SelectedTeams";
-import { drawGroups } from "./services/drawGroups";
+import { drawGroups } from "./domain/drawGroups";
 import { useDrawStore } from "./store/useDrawStore";
 import type { Group } from "./types";
 
