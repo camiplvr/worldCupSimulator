@@ -21,7 +21,6 @@ export function SearchSelect() {
           aria-label="Buscar seleção"
           role="combobox"
           aria-controls="results-list"
-          type="text"
           placeholder="Buscar seleção..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -47,7 +46,9 @@ export function SearchSelect() {
           className="border mt-2 max-h-40 overflow-y-auto"
         >
           {!hasResults && (
-            <li className="p-2 text-gray-500">Nenhuma seleção encontrada</li>
+            <li role="option" className="p-2 text-gray-500">
+              Nenhuma seleção encontrada
+            </li>
           )}
 
           {teams.map((team) => (

@@ -6,28 +6,38 @@ import { drawGroups } from "./domain/drawGroups";
 import { useDrawStore } from "./store/useDrawStore";
 import type { Group } from "./types";
 
+const GROUPS_KEY = "draw-groups";
+const CONFIG_KEY = "draw-config";
+
 function App() {
   const { selectedTeams } = useDrawStore();
   const [error, setError] = useState("");
-  const [groups, setGroups] = useState<Group[]>(() => {
-    const saved = localStorage.getItem("draw-results");
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [groupCount, setGroupCount] = useState(0);
-  const [groupSize, setGroupSize] = useState(0);
+  const [groups, setGroups] = useState<Group[]>([]);
+
+  const savedConfig = localStorage.getItem(CONFIG_KEY);
+  const initialConfig = savedConfig
+    ? JSON.parse(savedConfig)
+    : { groupCount: 4, groupSize: 4 };
+
+  const [groupCount, setGroupCount] = useState(initialConfig.groupCount || 4);
+  const [groupSize, setGroupSize] = useState(initialConfig.groupSize || 4);
   const totalNeeded = groupCount * groupSize;
 
   useEffect(() => {
-    setGroups([]);
-  }, [groupCount, groupSize]);
+    const saved = localStorage.getItem(GROUPS_KEY);
+
+    if (saved) {
+      setGroups(JSON.parse(saved));
+    }
+  }, []);
 
   const handleTest = () => {
     try {
       const groups = drawGroups(selectedTeams, groupCount, groupSize);
       setGroups(groups);
-      localStorage.setItem("draw-results", JSON.stringify(groups));
-    } catch (err: any) {
-      setError(err.message);
+      localStorage.setItem(GROUPS_KEY, JSON.stringify(groups));
+    } catch (err: unknown) {
+      setError((err as Error).message);
     }
   };
 
