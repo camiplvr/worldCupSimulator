@@ -7,7 +7,7 @@ import { useDrawStore } from "../../store/useDrawStore";
 import type { Group, DrawSettings } from "../../types";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { DrawPanel } from "../../components/DrawPanel/DrawPanel";
-import { GroupCards } from "../../components/GroupCard/GroupCards";
+import { GroupCard } from "../../components/GroupCard/GroupCard";
 
 const GROUPS_KEY = "draw-groups";
 const CONFIG_KEY = "draw-config";
@@ -68,7 +68,7 @@ function Home() {
             />
           </div>
           <div className="block col-span-9 gap-4 p-4">
-            <GroupCards
+            <GroupCard
               groups={groups}
               groupCount={groupCount}
               teamsPerGroup={teamsPerGroup}

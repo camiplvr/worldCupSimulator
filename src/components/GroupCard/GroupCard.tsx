@@ -1,6 +1,6 @@
 import type { Group } from "../../types";
 
-export function GroupCards({
+export function GroupCard({
   groups,
   teamsPerGroup,
 }: {
