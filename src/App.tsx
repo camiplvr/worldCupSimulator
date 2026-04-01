@@ -4,7 +4,7 @@ import Home from "./pages/home/index.tsx";
 function App() {
   return (
     <>
-      <div className="bg-gradient-to-br from-green-900 via-green-800 to-black">
+      <div className="w-full">
         <Home />
       </div>
     </>

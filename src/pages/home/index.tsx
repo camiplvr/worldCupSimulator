@@ -14,6 +14,7 @@ const CONFIG_KEY = "draw-config";
 
 function Home() {
   const { selectedTeams } = useDrawStore();
+
   const [error, setError] = useState("");
   const [groups, setGroups] = useState<Group[]>([]);
 
@@ -51,16 +52,21 @@ function Home() {
     }
   };
 
+  const clearDraw = () => {
+    setGroups([]);
+    localStorage.removeItem("draw-groups");
+  };
+
   return (
     <>
-      <div className="flex flex-col gap-2 pt-16">
+      <div className="bg-gradient-to-br from-green-900 via-green-800 to-black flex flex-col  pt-16 ">
         <Navbar />
         <div
-          className="flex flex-col lg:flex-row content-center justify-center gap-4
+          className="flex flex-col justify-between lg:flex-row gap-4
          min-h-screen text-white"
         >
-          <div className="mt-4 backdrop-blur h-full rounded-xl p-4 border border-white/10">
-            <p className=" text-sm text-gray-200 mt-2  mb-4">
+          <div className="m-4 backdrop-blur h-full rounded-xl p-4 border border-white/10">
+            <p className=" text-sm text-gray-200 mt-2 mb-4">
               Selecione os times :
             </p>
             <SearchSelect />
@@ -82,7 +88,17 @@ function Home() {
               teamsPerGroup={teamsPerGroup}
             />
           </div>
-          <SelectedTeams />
+          <div className="m-4 backdrop-blur rounded-xl p-4 min-w-88 max-h-185 border border-white/10">
+            <button
+              onClick={clearDraw}
+              disabled={groups.length === 0}
+              className="w-full bg-yellow-400 text-black font-semibold py-3 rounded disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+            >
+              Limpar sorteio
+            </button>
+
+            <SelectedTeams />
+          </div>
         </div>
         {error && <p className="text-red-500 mt-2">{error}</p>}
       </div>

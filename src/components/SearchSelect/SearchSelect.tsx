@@ -16,7 +16,7 @@ export function SearchSelect() {
 
   return (
     <>
-      <div className="min-w-content">
+      <div className="min-w-content min-h-115">
         <input
           aria-label="Buscar seleção"
           role="combobox"
@@ -43,7 +43,7 @@ export function SearchSelect() {
           <ul
             id="results-list"
             role="listbox"
-            className="border rounded mt-2 max-h-100 overflow-y-auto"
+            className="border rounded mt-2 max-h-90 overflow-y-auto"
           >
             {!hasResults && (
               <li role="option" className="p-2 text-gray-200">

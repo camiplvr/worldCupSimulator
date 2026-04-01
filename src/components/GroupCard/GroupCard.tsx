@@ -16,11 +16,11 @@ export function GroupCard({
   const displayGroups = groups.length >= 0 ? groups : emptyGroups;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 sm:min-w-50 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4">
       {displayGroups.map((group, index) => (
         <div
           key={index}
-          className="bg-white/10 hover:bg-white/20 transition backdrop-blur border border-white/10 rounded-xl p-4"
+          className="bg-white/10 hover:bg-white/20 transition backdrop-blur border border-white/10 rounded-xl p-2"
         >
           <div className="flex items-center justify-between mb-3 truncate">
             <span className="font-bold text-white text-lg mr-2 ">

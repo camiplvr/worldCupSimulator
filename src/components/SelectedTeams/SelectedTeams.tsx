@@ -5,19 +5,19 @@ export function SelectedTeams() {
 
   if (selectedTeams.length === 0) {
     return (
-      <div className="mt-4 backdrop-blur rounded-xl p-4 min-w-88 max-h-165 border border-white/10">
-        <h2 className="font-bold mb-2">
+      <div className="min-h-150">
+        <h2 className="font-bold m-2 ">
           Times selecionados ({selectedTeams.length})
         </h2>
-        <p className="text-gray-200">Nenhum time selecionado</p>
+        <p className="text-gray-200 text-center p-8">Nenhum time selecionado</p>
       </div>
     );
   }
 
   return (
-    <div className="mt-4 backdrop-blur rounded-xl p-4 h-full border border-white/10">
-      <div className="flex justify-between items-center mb-2">
-        <h2 className="font-bold">
+    <div>
+      <div className="flex justify-between items-center">
+        <h2 className="font-bold m-2">
           Times selecionados ({selectedTeams.length})
         </h2>
 
