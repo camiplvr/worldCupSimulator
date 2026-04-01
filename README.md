@@ -8,14 +8,14 @@ Aplicação web para simular o sorteio da fase de grupos da Copa do Mundo.
 
 Este projeto permite ao usuário:
 
-* Buscar e selecionar seleções participantes
-* Definir dinamicamente:
+- Buscar e selecionar seleções participantes
+- Definir dinamicamente:
+  - número de grupos
+  - número de times por grupo
 
-  * número de grupos
-  * número de times por grupo
-* Realizar o sorteio automaticamente
-* Re-sortear os grupos
-* Persistir os dados no navegador (localStorage)
+- Realizar o sorteio automaticamente
+- Re-sortear os grupos
+- Persistir os dados no navegador (localStorage)
 
 ---
 
@@ -23,44 +23,42 @@ Este projeto permite ao usuário:
 
 ### 🔎 Catálogo de seleções
 
-* Busca por nome ou código (ex: "Brasil", "BRA")
-* Lista dinâmica com feedback visual de seleção
-* Botão de **selecionar todos / remover todos**
-* Interface acessível com:
-
-  * `role="combobox"`
-  * `role="listbox"`
-  * `role="option"`
+- Busca por nome ou código (ex: "Brasil", "BRA")
+- Lista dinâmica com feedback visual de seleção
+- Botão de **selecionar todos / remover todos**
+- Interface acessível com:
+  - `role="combobox"`
+  - `role="listbox"`
+  - `role="option"`
 
 ---
 
 ### ⚙️ Configuração do sorteio
 
-* Definição de:
+- Definição de:
+  - quantidade de grupos
+  - times por grupo
 
-  * quantidade de grupos
-  * times por grupo
-* Validação automática:
-
-  * impede sorteio sem times suficientes
+- Validação automática:
+  - impede sorteio sem times suficientes
 
 ---
 
 ### 🎲 Simulação do sorteio
 
-* Distribuição automática dos times
-* Criação dos grupos (ex: Grupo A, B, C...)
-* Interface visual com os grupos organizados
+- Distribuição automática dos times
+- Criação dos grupos (ex: Grupo A, B, C...)
+- Interface visual com os grupos organizados
 
 ---
 
 ### 💾 Persistência
 
-* Dados salvos no `localStorage`:
+- Dados salvos no `localStorage`:
+  - seleções sorteadas
+  - configuração (grupos × tamanho)
 
-  * seleções sorteadas
-  * configuração (grupos × tamanho)
-* Recuperação automática ao recarregar a página
+- Recuperação automática ao recarregar a página
 
 ---
 
@@ -70,7 +68,11 @@ O projeto foi organizado separando responsabilidades:
 
 ```
 src/
-├── components/       # UI (React)
+├── components/ # UI (React)
+  ├── GroupCard
+  ├── Navbar
+  ├── Card
+  ├── DrawPanel
 ├── domain/           # Regras de negócio (drawGroups)
 ├── hooks/            # Lógica reutilizável (useTeams)
 ├── store/            # Estado global (Zustand)
@@ -86,10 +88,10 @@ src/
 
 Foi utilizado **Zustand** por:
 
-* Simplicidade e menor boilerplate
-* Integração direta com React
-* Ideal para aplicações pequenas/médias
-* Melhor legibilidade no contexto do desafio
+- Simplicidade e menor boilerplate
+- Integração direta com React
+- Ideal para aplicações pequenas/médias
+- Melhor legibilidade no contexto do desafio
 
 ---
 
@@ -97,9 +99,9 @@ Foi utilizado **Zustand** por:
 
 A lógica de sorteio (`drawGroups`) foi isolada em `domain/`:
 
-* Facilita testes
-* Evita acoplamento com UI
-* Permite evolução futura (API, regras FIFA, etc.)
+- Facilita testes
+- Evita acoplamento com UI
+- Permite evolução futura (API, regras FIFA, etc.)
 
 ---
 
@@ -107,8 +109,8 @@ A lógica de sorteio (`drawGroups`) foi isolada em `domain/`:
 
 O uso de `localStorage` garante:
 
-* Experiência contínua para o usuário
-* Simulação de estado real de aplicação
+- Experiência contínua para o usuário
+- Simulação de estado real de aplicação
 
 ---
 
@@ -118,45 +120,48 @@ Foram implementados testes com **Vitest + Testing Library**:
 
 ### ✔️ Testes unitários
 
-* `normalizedString`
-* `filterTeams`
-* `drawGroups`
+- `normalizedString`
+- `filterTeams`
+- `drawGroups`
 
 ### ✔️ Testes de integração
 
-* Fluxo completo:
+- Fluxo completo:
+  - selecionar times
+  - realizar sorteio
 
-  * selecionar times
-  * realizar sorteio
-* Persistência com `localStorage`
+- Persistência com `localStorage`
 
 ---
 
 ## ♿ Acessibilidade
 
-* Uso de roles semânticos (`combobox`, `listbox`, `option`)
-* Navegação preparada para teclado
-* Estrutura compatível com leitores de tela
+- Uso de roles semânticos (`combobox`, `listbox`, `option`)
+- Navegação preparada para teclado
+- Estrutura compatível com leitores de tela
 
 ---
 
 ## 🎨 UI/UX
 
-* Feedback visual de seleção
-* Estados desabilitados (botão de sorteio)
-* Mensagens de validação claras
-* Layout responsivo simples e funcional
+- Layout responsivo (mobile-first)
+- Grid adaptativo para exibição dos grupos
+- Feedback visual de seleção
+- Estados desabilitados (botão de sorteio)
+- Mensagens de validação claras
+- Scroll automático após sorteio
+- Componentes reutilizáveis (Card, GroupCard)
 
 ---
 
 ## 📦 Tecnologias
 
-* React
-* TypeScript
-* Zustand
-* Vitest
-* Testing Library
-* Tailwind CSS
+- React
+- TypeScript
+- Zustand
+- Vitest
+- Testing Library
+- Tailwind CSS
 
 ---
 
@@ -177,11 +182,11 @@ npm run test
 
 ## 📌 Melhorias futuras
 
-* Drag & drop entre grupos
-* Animação do sorteio
-* Integração com API real de seleções
-* Seeds e regras oficiais FIFA
-* Melhorias visuais (UX/UI)
+- Drag & drop entre grupos
+- Animação do sorteio
+- Integração com API real de seleções
+- Seeds e regras oficiais FIFA
+- Melhorias visuais (UX/UI)
 
 ---
 
@@ -189,9 +194,9 @@ npm run test
 
 Este projeto contou com auxílio de IA para:
 
-* Refinamento de arquitetura
-* Sugestões de testes
-* Organização do código
+- Refinamento de arquitetura
+- Sugestões de testes
+- Organização do código
 
 Todas as decisões finais, implementação e validação foram realizadas manualmente.
 
@@ -207,9 +212,9 @@ Camila Vicente
 
 O foco deste projeto foi:
 
-* Clareza de código
-* Separação de responsabilidades
-* Cobertura de testes
-* Aderência aos requisitos do desafio
+- Clareza de código
+- Separação de responsabilidades
+- Cobertura de testes
+- Aderência aos requisitos do desafio
 
 ---
