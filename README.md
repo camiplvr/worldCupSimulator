@@ -1,84 +1,215 @@
-# World Cup Simulator
+# 🌍 World Cup Draw Simulator
 
-Simulador de sorteio da Copa do Mundo 2026, feito em **React + TypeScript**.
-Permite buscar e selecionar seleções para simulação de sorteio (fase de grupos).
-
----
-
-## 🔹 Funcionalidades implementadas
-
-- Componente `SearchSelect` com campo de busca (autocomplete simples)
-- Hook `useTeams` gerenciando lista de times e filtro por query
-- Utilitário `filterTeams` para busca com normalização de strings
-- UI limpa, com mensagem “Nenhuma seleção encontrada” quando não há resultados
-
-> ⚠️ Busca atual simples: utiliza `includes()`.
-> Comentário de melhoria futura na função `filterTeams`: implementar ranking de relevância (startsWith > code match > includes), debounce e highlight do termo buscado.
+Aplicação web para simular o sorteio da fase de grupos da Copa do Mundo.
 
 ---
 
-## 🔹 Tecnologias
+## 📌 Sobre o projeto
 
-- **React** (Hooks)
-- **TypeScript**
-- **Vite** (ferramenta de build)
-- **Tailwind CSS** para estilização
-- **Zustand** (em breve para gerenciamento de estado global)
+Este projeto permite ao usuário:
+
+* Buscar e selecionar seleções participantes
+* Definir dinamicamente:
+
+  * número de grupos
+  * número de times por grupo
+* Realizar o sorteio automaticamente
+* Re-sortear os grupos
+* Persistir os dados no navegador (localStorage)
 
 ---
 
-## 🔹 Rodando localmente
+## 🚀 Funcionalidades
 
-1. Clone o repositório:
+### 🔎 Catálogo de seleções
 
-```bash
-git clone https://github.com/SEU_USUARIO/worldCupSimulator.git
+* Busca por nome ou código (ex: "Brasil", "BRA")
+* Lista dinâmica com feedback visual de seleção
+* Botão de **selecionar todos / remover todos**
+* Interface acessível com:
+
+  * `role="combobox"`
+  * `role="listbox"`
+  * `role="option"`
+
+---
+
+### ⚙️ Configuração do sorteio
+
+* Definição de:
+
+  * quantidade de grupos
+  * times por grupo
+* Validação automática:
+
+  * impede sorteio sem times suficientes
+
+---
+
+### 🎲 Simulação do sorteio
+
+* Distribuição automática dos times
+* Criação dos grupos (ex: Grupo A, B, C...)
+* Interface visual com os grupos organizados
+
+---
+
+### 💾 Persistência
+
+* Dados salvos no `localStorage`:
+
+  * seleções sorteadas
+  * configuração (grupos × tamanho)
+* Recuperação automática ao recarregar a página
+
+---
+
+## 🧱 Arquitetura
+
+O projeto foi organizado separando responsabilidades:
+
 ```
-
-2. Entre na pasta do projeto:
-
-```bash
-cd worldCupSimulator
-```
-
-3. Instale as dependências:
-
-```bash
-npm install
-```
-
-4. Rode em modo de desenvolvimento:
-
-```bash
-npm run dev
-```
-
-O app estará disponível em http://localhost:3000 .
-
-## 🔹 Estrutura do projeto
-
-```bash
 src/
-├─ components/ # Componentes UI (SearchSelect, etc.)
-├─ data/ # Dataset das seleções (teams.json)
-├─ hooks/ # Hooks customizados (useTeams, futuro useDrawStore)
-├─ store/ # Zustand store (em breve)
-├─ utils/ # Funções utilitárias (filterTeams, normalizeString)
-└─ pages/ # Páginas do app (se houver)
+├── components/       # UI (React)
+├── domain/           # Regras de negócio (drawGroups)
+├── hooks/            # Lógica reutilizável (useTeams)
+├── store/            # Estado global (Zustand)
+├── utils/            # Funções puras (filtro, normalização)
+├── types/            # Tipagens
 ```
 
-## 🔹 Melhorias futuras
+---
 
-- Implementar ranking de resultados na busca (mais relevante para o usuário)
-- Adicionar debounce na busca
-- Highlight do termo pesquisado
-- Integração com Zustand para seleção de times
-- Função de sorteio de grupos (fase de grupos completa)
-- Testes unitários e de integração
-- Persistência avançada no LocalStorage ou API futura
-- Compartilhamento do resultado (Web Share API)
+## 🧠 Decisões técnicas
 
-## 🔹 Observações
+### Zustand vs Redux
 
-- Projeto foi desenvolvido seguindo requisitos do desafio técnico Front-end Pleno | React + TypeScript
-- Uso de IA para apoio (ChatGPT) documentado: auxiliar na arquitetura inicial e sugestões de melhorias. Todo código foi revisado manualmente.
+Foi utilizado **Zustand** por:
+
+* Simplicidade e menor boilerplate
+* Integração direta com React
+* Ideal para aplicações pequenas/médias
+* Melhor legibilidade no contexto do desafio
+
+---
+
+### Separação de domínio
+
+A lógica de sorteio (`drawGroups`) foi isolada em `domain/`:
+
+* Facilita testes
+* Evita acoplamento com UI
+* Permite evolução futura (API, regras FIFA, etc.)
+
+---
+
+### Persistência
+
+O uso de `localStorage` garante:
+
+* Experiência contínua para o usuário
+* Simulação de estado real de aplicação
+
+---
+
+## 🧪 Testes
+
+Foram implementados testes com **Vitest + Testing Library**:
+
+### ✔️ Testes unitários
+
+* `normalizedString`
+* `filterTeams`
+* `drawGroups`
+
+### ✔️ Testes de integração
+
+* Fluxo completo:
+
+  * selecionar times
+  * realizar sorteio
+* Persistência com `localStorage`
+
+---
+
+## ♿ Acessibilidade
+
+* Uso de roles semânticos (`combobox`, `listbox`, `option`)
+* Navegação preparada para teclado
+* Estrutura compatível com leitores de tela
+
+---
+
+## 🎨 UI/UX
+
+* Feedback visual de seleção
+* Estados desabilitados (botão de sorteio)
+* Mensagens de validação claras
+* Layout responsivo simples e funcional
+
+---
+
+## 📦 Tecnologias
+
+* React
+* TypeScript
+* Zustand
+* Vitest
+* Testing Library
+* Tailwind CSS
+
+---
+
+## ▶️ Como rodar o projeto
+
+```bash
+# instalar dependências
+npm install
+
+# rodar o projeto
+npm run dev
+
+# rodar testes
+npm run test
+```
+
+---
+
+## 📌 Melhorias futuras
+
+* Drag & drop entre grupos
+* Animação do sorteio
+* Integração com API real de seleções
+* Seeds e regras oficiais FIFA
+* Melhorias visuais (UX/UI)
+
+---
+
+## 🤖 Uso de IA
+
+Este projeto contou com auxílio de IA para:
+
+* Refinamento de arquitetura
+* Sugestões de testes
+* Organização do código
+
+Todas as decisões finais, implementação e validação foram realizadas manualmente.
+
+---
+
+## 👩‍💻 Autora
+
+Camila Vicente
+
+---
+
+## 📎 Observações finais
+
+O foco deste projeto foi:
+
+* Clareza de código
+* Separação de responsabilidades
+* Cobertura de testes
+* Aderência aos requisitos do desafio
+
+---
