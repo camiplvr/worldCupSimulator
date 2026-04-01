@@ -12,7 +12,7 @@
 
 Aplicação web interativa que permite simular o sorteio da fase de grupos da Copa do Mundo, com foco em experiência do usuário, organização de código e separação de responsabilidades.
 
-## O projeto foi desenvolvido como parte de um desafio técnico com ênfase em arquitetura front-end, testes automatizados e boas práticas.
+O projeto foi desenvolvido como parte de um desafio técnico com ênfase em arquitetura front-end, testes automatizados e boas práticas.
 
 ## 🚀 Funcionalidades
 
