@@ -19,18 +19,14 @@ export function DrawPanel({
 }) {
   return (
     <>
-      <div className="block mt-4 ">
-        <button
-          onClick={onDraw}
-          disabled={disabled}
-          className="w-full bg-yellow-400 text-black font-semibold py-2 rounded disabled:opacity-50"
-        >
-          Sortear grupos
-        </button>
+      <p className="text-sm text-gray-200 mt-4">
+        Selecione a quantidade de grupos e times por grupos:
+      </p>
 
+      <div className="block mt-4 ">
         <div className="flex gap-4 m-2 align-items-center">
           <div>
-            <label className="block text-sm m-2">Grupos</label>
+            <label className="block text-sm ">Grupos</label>
             <input
               type="number"
               min={1}
@@ -40,7 +36,7 @@ export function DrawPanel({
             />
           </div>
           <div>
-            <label className="block text-sm m-2">Times por grupo</label>
+            <label className="block text-sm ">Times por grupo</label>
             <input
               type="number"
               min={1}
@@ -51,8 +47,16 @@ export function DrawPanel({
           </div>
         </div>
 
+        <button
+          onClick={onDraw}
+          disabled={disabled}
+          className="mt-4 w-full bg-yellow-400 text-black font-semibold py-3 rounded disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+        >
+          Sortear grupos
+        </button>
+
         {disabled && (
-          <p className="text-gray-500 mt-2">
+          <p className="text-gray-200 mt-2">
             Selecione {totalNeeded - selectedTeams} times para sortear
           </p>
         )}

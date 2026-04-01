@@ -16,7 +16,7 @@ export function SearchSelect() {
 
   return (
     <>
-      <div className="w-80">
+      <div className="min-w-content">
         <input
           aria-label="Buscar seleção"
           role="combobox"
@@ -36,7 +36,7 @@ export function SearchSelect() {
           }}
           className="mb-2 text-sm text-blue-500 hover:underline"
         >
-          {allSelected ? "Remover todos" : "Selecionar todos"}
+          {allSelected ? "Limpar todos" : "Selecionar todos"}
         </button>
 
         <div>
@@ -46,7 +46,7 @@ export function SearchSelect() {
             className="border rounded mt-2 max-h-100 overflow-y-auto"
           >
             {!hasResults && (
-              <li role="option" className="p-2 text-gray-500">
+              <li role="option" className="p-2 text-gray-200">
                 Nenhuma seleção encontrada
               </li>
             )}

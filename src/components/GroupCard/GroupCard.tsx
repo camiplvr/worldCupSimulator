@@ -3,22 +3,29 @@ import type { Group } from "../../types";
 export function GroupCard({
   groups,
   teamsPerGroup,
+  groupCount,
 }: {
   groups: Group[];
   groupCount: number;
   teamsPerGroup: number;
 }) {
-  if (groups.length === 0) return null;
+  const emptyGroups = Array.from({ length: groupCount }, (_, i) => ({
+    name: `Grupo ${String.fromCharCode(65 + i)}`,
+    teams: [],
+  }));
+  const displayGroups = groups.length >= 0 ? groups : emptyGroups;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4">
-      {groups.map((group) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 sm:min-w-50 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {displayGroups.map((group, index) => (
         <div
-          key={group.id}
+          key={index}
           className="bg-white/10 hover:bg-white/20 transition backdrop-blur border border-white/10 rounded-xl p-4"
         >
-          <div className="flex justify-between mb-3">
-            <span className="font-bold text-white"> {group.id}</span>
+          <div className="flex items-center justify-between mb-3 truncate">
+            <span className="font-bold text-white text-lg mr-2 ">
+              Grupo {String.fromCharCode(65 + index)}{" "}
+            </span>
 
             <span className="text-sm text-gray-300">
               {group.teams.length}/{teamsPerGroup}
@@ -27,7 +34,7 @@ export function GroupCard({
 
           <div className="space-y-2">
             {group.teams.length === 0 && (
-              <p className="text-gray-400 text-sm">Nenhum time ainda</p>
+              <p className="text-gray-400 text-sm">Aguardando sorteio...</p>
             )}
 
             {group.teams.map((team) => (

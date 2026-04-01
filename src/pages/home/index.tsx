@@ -28,6 +28,11 @@ function Home() {
   );
   const totalNeeded = groupCount * teamsPerGroup;
 
+  const isButtonDisabled =
+    groupCount <= 0 ||
+    teamsPerGroup <= 0 ||
+    selectedTeams.length < groupCount * teamsPerGroup;
+
   useEffect(() => {
     const saved = localStorage.getItem(GROUPS_KEY);
 
@@ -48,17 +53,20 @@ function Home() {
 
   return (
     <>
-      <div className="bg-gradient-to-br from-green-900 via-green-800 to-black">
+      <div className="flex flex-col gap-2 pt-16">
         <Navbar />
         <div
-          className="flex content-center justify-center gap-4 p-4
-         min-h-screen bg-gradient-to-br from-green-900 to-black text-white"
+          className="flex flex-col lg:flex-row content-center justify-center gap-4
+         min-h-screen text-white"
         >
           <div className="mt-4 backdrop-blur h-full rounded-xl p-4 border border-white/10">
+            <p className=" text-sm text-gray-200 mt-2  mb-4">
+              Selecione os times :
+            </p>
             <SearchSelect />
             <DrawPanel
               onDraw={handleDraw}
-              disabled={selectedTeams.length < totalNeeded}
+              disabled={isButtonDisabled}
               selectedTeams={selectedTeams.length}
               totalNeeded={totalNeeded}
               setGroupCount={setGroupCount}
@@ -67,7 +75,7 @@ function Home() {
               teamsPerGroup={teamsPerGroup}
             />
           </div>
-          <div className="block col-span-9 gap-4 p-4">
+          <div className="col-span-9 gap-4 p-4">
             <GroupCard
               groups={groups}
               groupCount={groupCount}

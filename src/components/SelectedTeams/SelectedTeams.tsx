@@ -9,7 +9,7 @@ export function SelectedTeams() {
         <h2 className="font-bold mb-2">
           Times selecionados ({selectedTeams.length})
         </h2>
-        <p className="text-gray-500">Nenhum time selecionado</p>
+        <p className="text-gray-200">Nenhum time selecionado</p>
       </div>
     );
   }
