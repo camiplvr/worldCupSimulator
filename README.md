@@ -1,25 +1,32 @@
 # 🌍 World Cup Draw Simulator
 
-Aplicação web para simular o sorteio da fase de grupos da Copa do Mundo.
+## 📸 Preview
 
----
+![Preview do projeto](./src/assets/preview-img.png)
+
+## 🔗 Demo
+
+👉 https://world-cup-simulator-two.vercel.app/
 
 ## 📌 Sobre o projeto
 
-Este projeto permite ao usuário:
+Aplicação web interativa que permite simular o sorteio da fase de grupos da Copa do Mundo, com foco em experiência do usuário, organização de código e separação de responsabilidades.
 
-- Buscar e selecionar seleções participantes
-- Definir dinamicamente:
-  - número de grupos
-  - número de times por grupo
-
-- Realizar o sorteio automaticamente
-- Re-sortear os grupos
-- Persistir os dados no navegador (localStorage)
-
----
+## O projeto foi desenvolvido como parte de um desafio técnico com ênfase em arquitetura front-end, testes automatizados e boas práticas.
 
 ## 🚀 Funcionalidades
+
+Abaixo, detalhamento das principais funcionalidades:
+
+- 🔎 Busca de seleções por nome ou código
+- ➕ Seleção e remoção de times participantes
+- ⚙️ Configuração dinâmica do sorteio (grupos e tamanho)
+- 🎲 Geração automática de grupos (fase de grupos)
+- 🔁 Re-sorteio dos grupos
+- 💾 Persistência de dados com localStorage
+- 🚫 Validações (mínimo de seleções, duplicidade)
+- 📊 Exibição organizada dos grupos sorteados
+- ♿ Suporte básico à acessibilidade (ARIA roles)
 
 ### 🔎 Catálogo de seleções
 
@@ -69,10 +76,10 @@ O projeto foi organizado separando responsabilidades:
 ```
 src/
 ├── components/ # UI (React)
-  ├── GroupCard
-  ├── Navbar
-  ├── Card
-  ├── DrawPanel
+│   ├── GroupCard
+│   ├── Navbar
+│   ├── Card
+│   ├── DrawPanel
 ├── domain/           # Regras de negócio (drawGroups)
 ├── hooks/            # Lógica reutilizável (useTeams)
 ├── store/            # Estado global (Zustand)
@@ -173,6 +180,8 @@ npm install
 
 # rodar o projeto
 npm run dev
+npm run build
+npm run preview
 
 # rodar testes
 npm run test
@@ -180,13 +189,15 @@ npm run test
 
 ---
 
-## 📌 Melhorias futuras
+### Escalabilidade
+
+A arquitetura foi pensada para permitir evolução futura, como:
 
 - Drag & drop entre grupos
-- Animação do sorteio
-- Integração com API real de seleções
-- Seeds e regras oficiais FIFA
-- Melhorias visuais (UX/UI)
+- implementação de regras por potes (pots)
+- restrições por confederação
+- integração com APIs externas
+- suporte a múltiplos sorteios
 
 ---
 
@@ -210,11 +221,11 @@ Camila Vicente
 
 ## 📎 Observações finais
 
-O foco deste projeto foi:
+Este projeto foi desenvolvido com foco em boas práticas de engenharia front-end, incluindo:
 
-- Clareza de código
-- Separação de responsabilidades
-- Cobertura de testes
-- Aderência aos requisitos do desafio
+- organização em camadas
+- separação de responsabilidades
+- testabilidade
+- experiência do usuário
 
----
+## A solução foi pensada para ser evolutiva, permitindo a adição de regras mais complexas e integração com APIs reais.
