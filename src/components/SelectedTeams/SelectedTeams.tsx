@@ -5,15 +5,17 @@ export function SelectedTeams() {
 
   if (selectedTeams.length === 0) {
     return (
-      <div className="mt-4">
-        <h2 className="font-bold mb-2">Times selecionados</h2>
+      <div className="mt-4 backdrop-blur rounded-xl p-4 min-w-88 max-h-165 border border-white/10">
+        <h2 className="font-bold mb-2">
+          Times selecionados ({selectedTeams.length})
+        </h2>
         <p className="text-gray-500">Nenhum time selecionado</p>
       </div>
     );
   }
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 backdrop-blur rounded-xl p-4 h-full border border-white/10">
       <div className="flex justify-between items-center mb-2">
         <h2 className="font-bold">
           Times selecionados ({selectedTeams.length})
@@ -21,20 +23,21 @@ export function SelectedTeams() {
 
         <button
           onClick={clearTeams}
-          className="text-sm text-red-500 hover:underline"
+          className="text-sm ml-2 text-red-500 hover:underline"
         >
           Limpar todos
         </button>
       </div>
 
-      <ul className="border rounded p-2">
+      <ul className="border rounded mt-2 p-2 overflow-y-auto max-h-150">
         {selectedTeams.map((team) => (
           <li
+            role="option"
             key={team.code}
             className="flex justify-between items-center p-2 border-b last:border-none"
           >
             <span>
-              {team.name} ({team.code})
+              {team.flag} {team.name} ({team.code})
             </span>
 
             <button

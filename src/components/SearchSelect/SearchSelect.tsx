@@ -16,7 +16,7 @@ export function SearchSelect() {
 
   return (
     <>
-      <div className="mb-4">
+      <div className="w-80">
         <input
           aria-label="Buscar seleção"
           role="combobox"
@@ -38,30 +38,31 @@ export function SearchSelect() {
         >
           {allSelected ? "Remover todos" : "Selecionar todos"}
         </button>
-      </div>
-      <div>
-        <ul
-          id="results-list"
-          role="listbox"
-          className="border mt-2 max-h-40 overflow-y-auto"
-        >
-          {!hasResults && (
-            <li role="option" className="p-2 text-gray-500">
-              Nenhuma seleção encontrada
-            </li>
-          )}
 
-          {teams.map((team) => (
-            <li
-              role="option"
-              key={team.code}
-              className={`p-2 hover:bg-gray-100 cursor-pointer ${isSelected(team.code) ? "bg-green-200" : ""}`}
-              onClick={() => handleSelect(team)}
-            >
-              {team.name} ({team.code})
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ul
+            id="results-list"
+            role="listbox"
+            className="border rounded mt-2 max-h-100 overflow-y-auto"
+          >
+            {!hasResults && (
+              <li role="option" className="p-2 text-gray-500">
+                Nenhuma seleção encontrada
+              </li>
+            )}
+
+            {teams.map((team) => (
+              <li
+                role="option"
+                key={team.code}
+                className={`p-2 border-b last:border-none hover:bg-yellow-400 cursor-pointer ${isSelected(team.code) ? "bg-black text-white" : ""}`}
+                onClick={() => handleSelect(team)}
+              >
+                {team.flag} {team.name} ({team.code})
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );

@@ -4,6 +4,7 @@ export interface Team {
   confederation: string;
   qualificationType?: string;
   pot?: number;
+  flag?: string;
 }
 
 export interface Group {
